@@ -41,9 +41,10 @@ The entire architecture is containerized and requires zero local environment con
 
 ### Quick Start
 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/virality-predictor.git](https://github.com/YOUR_USERNAME/virality-predictor.git)
-   cd virality-predictor
+```bash
+git clone [https://github.com/YOUR_USERNAME/virality-predictor.git](https://github.com/YOUR_USERNAME/virality-predictor.git)
+cd virality-predictor
+```
 
 2. **Boot the architecture:**
 ```bash
@@ -96,7 +97,5 @@ virality-predictor/
 
 * **Live On-Demand Fetching:** Upgrade the FastAPI `/predict` endpoint to ping the YouTube Data API when an unseen Channel ID is provided, dynamically fetching their last 10 videos to calculate a real-time historical baseline instead of relying on the global fallback.
 * **Thumbnail Vision Integration:** Extract RGB histograms, text-to-image ratios, and facial recognition features from thumbnails via OpenCV to improve the model's ability to predict viral breakouts.
-
-```
 
 ```
