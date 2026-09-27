@@ -6,6 +6,8 @@ import optuna
 import lightgbm as lgb
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_absolute_error, r2_score
+import mlflow
+import mlflow.lightgbm
 
 # Import your custom modules
 from src.features.build_features import prep_training_data
@@ -73,13 +75,28 @@ def main():
     print("3. Optimizing model...")
     best_params = optimize_hyperparameters(X, y)
     
-    print("4. Training Final Model...")
-    best_lgb = lgb.LGBMRegressor(**best_params, random_state=42, verbosity=-1)
-    best_lgb.fit(X, y)
+    print("4. Training Final Model and Logging to MLflow...")
     
-    preds = best_lgb.predict(X)
-    print(f"Final Model MAE (Log Views): {mean_absolute_error(y, preds):.4f}")
-    print(f"Final Model R2:  {r2_score(y, preds):.4f}")
+    # Connect to your Dockerized MLflow server
+    mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_experiment("youtube-virality-predictor")
+    
+    # Start the tracking run
+    with mlflow.start_run(run_name="Optuna_Tuned_Model"):
+        best_lgb = lgb.LGBMRegressor(**best_params, random_state=42, verbosity=-1)
+        best_lgb.fit(X, y)
+        
+        preds = best_lgb.predict(X)
+        mae = mean_absolute_error(y, preds)
+        r2 = r2_score(y, preds)
+        
+        print(f"Final Model MAE (Log Views): {mae:.4f}")
+        print(f"Final Model R2:  {r2:.4f}")
+        
+        # Log everything to the MLflow dashboard
+        mlflow.log_params(best_params)
+        mlflow.log_metrics({"mae": mae, "r2": r2})
+        mlflow.lightgbm.log_model(best_lgb, artifact_path="model")
     
     print("5. Saving model and inference artifacts...")
     joblib.dump(best_lgb, "models/lightgbm_model.pkl")

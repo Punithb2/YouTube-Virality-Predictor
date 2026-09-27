@@ -41,5 +41,19 @@ services:
     depends_on:
       - api
 
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    ports:
+      - "5000:5000"
+    command: >
+      /bin/sh -c "pip install psycopg2-binary && mlflow server 
+      --backend-store-uri postgresql+psycopg2://admin:password123@db:5432/youtube_ml 
+      --default-artifact-root /mlflow/artifacts 
+      --host 0.0.0.0 
+      --port 5000 
+      --serve-artifacts"
+    depends_on:
+      - db
+
 volumes:
   postgres_data:
