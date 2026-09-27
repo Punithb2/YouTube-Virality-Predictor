@@ -1,4 +1,3 @@
-```markdown
 # 📈 YouTube Virality Predictor: End-to-End ML Architecture
 
 An end-to-end Machine Learning pipeline that predicts the expected 30-day view count of a YouTube video based on its metadata and historical channel momentum. 
@@ -45,8 +44,6 @@ The entire architecture is containerized and requires zero local environment con
    ```bash
    git clone [https://github.com/YOUR_USERNAME/virality-predictor.git](https://github.com/YOUR_USERNAME/virality-predictor.git)
    cd virality-predictor
-
-```
 
 2. **Boot the architecture:**
 ```bash
