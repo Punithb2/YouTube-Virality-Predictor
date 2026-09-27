@@ -1,15 +1,15 @@
 {
     "features": [
         "channel_avg_log_views",
-        "log_age",
-        "title_length",
-        "description_length",
         "tag_count",
         "duration_seconds",
+        "title_length",
+        "log_age",
+        "description_length",
         "publish_hour",
         "is_weekend"
     ],
-    "global_avg_log_views": 11.052892415881088,
+    "global_avg_log_views": 11.051544129129748,
     "fixed_inference_days": 30,
     "fixed_log_age": 3.4339872044851463,
     "channel_stats": {
@@ -30,7 +30,6 @@
         "UCCzLjE032rhF0CRpN0G7lVQ": 9.61016551648798,
         "UCDcTMqejXColQz4bRgxokrw": 13.46308323704749,
         "UCFAiFyGs6oDiF1Nf-rRJpZA": 15.094278135616095,
-        "UCGBqwUkYWcTec_rq5gZTeFw": 11.052892415881088,
         "UCHeMHIX3OPvC_HTA_Fi2v7w": 9.480220444758578,
         "UCIr7BwNo7_juraXDtnEoEkQ": 8.544162282973698,
         "UCJZam2u1G0syq3kyqrCXrNw": 15.435101218972157,
